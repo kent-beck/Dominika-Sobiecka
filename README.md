@@ -1,8 +1,11 @@
-# Getting Started with Create React App
+The app will be a fictitious beers shop - I'm using the free API: [https://punkapi.com/documentation/v2](https://punkapi.com/documentation/v2)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The application will allow you to:
+- search for a specific beer
+- sorting by various criteria
+- creating a cart with beers (adding and removing beers)
+- displayed a detailed view of a single beer
 
-## Available Scripts
 
 In the project directory, you can run:
 
