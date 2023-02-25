@@ -22,12 +22,13 @@ export interface FetchBeersFailureAction {
     error: string;
 }
 
-export const fetchBeers = () => {
+export const fetchBeers = (page: number, perPage: number) => {
+    const url = `https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}`;
     return async (dispatch: Dispatch) => {
         dispatch<FetchBeersRequestAction>({type: ActionTypes.FETCH_BEERS_REQUEST});
 
         try {
-            const response = await axios.get('https://api.punkapi.com/v2/beers');
+            const response = await axios.get(url);
             const beers = response.data;
 
             dispatch<FetchBeersSuccessAction>({
@@ -42,4 +43,3 @@ export const fetchBeers = () => {
         }
     };
 };
-
