@@ -5,7 +5,7 @@ import {fetchBeers} from '../../actions/actions';
 import {Beer} from '../../types/types';
 import BeerBubbles from '../BeerBubbles/BeerBubbles';
 import {BeerTitle} from '../BeerTitle/BeerTitle.styled';
-import {BeerItems, BeerItem, BeerName, BeerImg, BeerAbv, BeerTagline} from './DataTable.styled';
+import {BeerItems, BeerItem, BeerName, BeerImg, BeerAbv, BeerTagline, ButtonsBeers} from './DataTable.styled';
 
 const DataTable = () => {
     const dispatch: Dispatch<any> = useDispatch();
@@ -44,17 +44,19 @@ const DataTable = () => {
                     <BeerItem key={beer.id}>
                         <BeerName>{beer.name}</BeerName>
                         <BeerImg src={beer.image_url}/>
-                        <BeerAbv>{beer.abv}%</BeerAbv>
+                        <BeerAbv>{beer.abv}% <span>abv</span></BeerAbv>
                         <BeerTagline>{beer.tagline}</BeerTagline>
                     </BeerItem>
                 ))}
             </BeerItems>
-            <button onClick={prevPage} disabled={page === 1}>
-                Prev
-            </button>
-            <button onClick={nextPage} disabled={beers.length < perPage}>
-                Next
-            </button>
+            <ButtonsBeers>
+                <button onClick={prevPage} disabled={page === 1}>
+                    Prev
+                </button>
+                <button onClick={nextPage} disabled={beers.length < perPage}>
+                    Next
+                </button>
+            </ButtonsBeers>
         </>
     );
 };
