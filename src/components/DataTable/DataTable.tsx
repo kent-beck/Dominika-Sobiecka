@@ -3,6 +3,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Dispatch} from 'redux';
 import {fetchBeers} from '../../actions/actions';
 import {Beer} from '../../types/types';
+import BeerBubbles from '../BeerBubbles/BeerBubbles';
+import {BeerTitle} from '../BeerTitle/BeerTitle.styled';
+import {BeerItems, BeerItem, BeerName, BeerImg, BeerAbv, BeerTagline} from './DataTable.styled';
 
 const DataTable = () => {
     const dispatch: Dispatch<any> = useDispatch();
@@ -34,22 +37,18 @@ const DataTable = () => {
 
     return (
         <>
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Tagline</th>
-                </tr>
-                </thead>
-                <tbody>
+            <BeerBubbles/>
+            <BeerTitle>Crazy Beers</BeerTitle>
+            <BeerItems>
                 {beers.map((beer: Beer) => (
-                    <tr key={beer.id}>
-                        <td>{beer.name}</td>
-                        <td>{beer.tagline}</td>
-                    </tr>
+                    <BeerItem key={beer.id}>
+                        <BeerName>{beer.name}</BeerName>
+                        <BeerImg src={beer.image_url}/>
+                        <BeerAbv>{beer.abv}%</BeerAbv>
+                        <BeerTagline>{beer.tagline}</BeerTagline>
+                    </BeerItem>
                 ))}
-                </tbody>
-            </table>
+            </BeerItems>
             <button onClick={prevPage} disabled={page === 1}>
                 Prev
             </button>
