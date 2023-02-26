@@ -1,4 +1,4 @@
-import {Beer, Action, State} from '../types/types';
+import {Beer, Action, State} from '../types/beersTypes';
 
 const initialState: State = {
     beers: [],
@@ -6,7 +6,7 @@ const initialState: State = {
     error: null,
 };
 
-export const reducer = (state: State = initialState, action: Action): State => {
+export const beersReducer = (state: State = initialState, action: Action): State => {
     switch (action.type) {
         case 'FETCH_BEERS_REQUEST':
             return {

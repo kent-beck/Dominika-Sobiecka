@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Dispatch} from 'redux';
-import {Beer} from '../types/types';
+import {Beer} from '../types/beersTypes';
 
 export enum ActionTypes {
     FETCH_BEERS_REQUEST = 'FETCH_BEERS_REQUEST',
