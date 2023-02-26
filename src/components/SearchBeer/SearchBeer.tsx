@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {searchBeersRequest} from "../../actions/searchActions";
-import {SetSearchTermAction, SearchActionTypes} from '../../types/searchTypes';
+import {SetSearchTermAction, SearchActionTypes} from "../../types/searchTypes";
 import {Search} from "./SearchBeer.styled";
 
 const SearchBeer: React.FC = () => {

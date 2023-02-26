@@ -1,4 +1,4 @@
-import {Beer, Action, State} from '../types/beersTypes';
+import {Action, State} from '../types/beersTypes';
 
 const initialState: State = {
     beers: [],
