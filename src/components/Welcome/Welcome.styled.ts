@@ -2,11 +2,8 @@ import styled from "styled-components";
 import Modal from 'react-modal';
 
 export const Wrapper = styled.div`
-  background-color: #141114;
-  background-image: linear-gradient(335deg, black 23px, transparent 23px),
-  linear-gradient(155deg, black 23px, transparent 23px),
-  linear-gradient(335deg, black 23px, transparent 23px),
-  linear-gradient(155deg, black 23px, transparent 23px);
+  background-color: #623211;
+  background-image: linear-gradient(335deg, #6E3B17 23px, transparent 23px), linear-gradient(155deg, #6E3B17 23px, transparent 23px), linear-gradient(335deg, #6E3B17 23px, transparent 23px), linear-gradient(155deg, #6E3B17 23px, transparent 23px);
   background-size: 58px 58px;
   background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
   height: 100vh;
@@ -19,17 +16,17 @@ export const Title = styled.div`
   align-items: center;
   width: 50%;
   height: 50%;
-  background-image: radial-gradient(ellipse 50% 35% at 50% 50%, #6b1839, transparent);
+  background-image: radial-gradient(ellipse 50% 35% at 50% 50%, #86957F, transparent);
   transform: translate(-50%, -50%);
   letter-spacing: 2px;
   left: 50%;
   top: 50%;
   text-transform: uppercase;
   font-size: 6em;
-  color: #ffe6ff;
-  text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-  -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
-    0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+  color: #EFFFE2;
+  text-shadow: 0 0 0.6rem #EFFFE2, 0 0 1.5rem #90FF77,
+  -0.2rem 0.1rem 1rem #90FF77, 0.2rem 0.1rem 1rem #90FF77,
+    0 -0.5rem 2rem #4FFF00, 0 0.5rem 3rem #4FFF00;
   animation: shine 2s forwards, flicker 3s infinite;
 
   @keyframes blink {
@@ -37,19 +34,19 @@ export const Title = styled.div`
     22%,
     36%,
     75% {
-      color: #ffe6ff;
-      text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-      -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
-        0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+      color: #EFFFE2;
+      text-shadow: 0 0 0.6rem #EFFFE2, 0 0 1.5rem #90FF77,
+      -0.2rem 0.1rem 1rem #90FF77, 0.2rem 0.1rem 1rem #90FF77,
+        0 -0.5rem 2rem #4FFF00, 0 0.5rem 3rem #4FFF00;
     }
     28%,
     33% {
-      color: #ff65bd;
+      color: #90FF77;
       text-shadow: none;
     }
     82%,
     97% {
-      color: #ff2483;
+      color: #4FFF00;
       text-shadow: none;
     }
   }
@@ -64,14 +61,14 @@ export const Title = styled.div`
 
   @keyframes shine {
     0% {
-      color: #6b1839;
+      color: #86957F;
       text-shadow: none;
     }
     100% {
-      color: #ffe6ff;
-      text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-      -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
-        0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+      color: #EFFFE2;
+      text-shadow: 0 0 0.6rem #EFFFE2, 0 0 1.5rem #90FF77,
+      -0.2rem 0.1rem 1rem #90FF77, 0.2rem 0.1rem 1rem #90FF77,
+        0 -0.5rem 2rem #4FFF00, 0 0.5rem 3rem #4FFF00;
     }
   }
 
@@ -216,10 +213,10 @@ export const AgeVerification = styled.div`
   text-align: center;
 
   h3 {
-    color: white;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-    -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
-      0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+    color: #EFFFE2;
+    text-shadow: 0 0 0.6rem #EFFFE2, 0 0 1.5rem #90FF77,
+    -0.2rem 0.1rem 1rem #90FF77, 0.2rem 0.1rem 1rem #90FF77,
+      0 -0.5rem 2rem #4FFF00, 0 0.5rem 3rem #4FFF00;
   }
 
   p {
@@ -238,13 +235,13 @@ export const StyledModal = styled(Modal)`
   justify-content: center;
   flex-direction: column;
   padding-top: 10%;
-  text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
-  -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
-    0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+  text-shadow: 0 0 0.6rem #EFFFE2, 0 0 1.5rem #90FF77,
+  -0.2rem 0.1rem 1rem #90FF77, 0.2rem 0.1rem 1rem #90FF77,
+    0 -0.5rem 2rem #4FFF00, 0 0.5rem 3rem #4FFF00;
 
   button {
     background-color: #000000;
-    border: 2px solid #ff65bd;
+    border: 2px solid #90FF77;
     padding: 1rem 3rem;
     color: white;
     font-size: 18px;

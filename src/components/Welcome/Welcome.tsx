@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {Wrapper, Title, AgeVerification, StyledModal} from './Welcome.styled';
+import Beer from "../Beer/Beer";
 import DataTable from '../DataTable/DataTable';
 import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
@@ -24,6 +25,7 @@ const Welcome = () => {
 
     return (
         <Wrapper>
+            <Beer/>
             <Title className="sign">
                 <span className="fast-flicker">cr</span>azy&nbsp;
                 <span className="flicker">bee</span>rs
