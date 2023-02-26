@@ -12,11 +12,24 @@ const DataTable = () => {
     const dispatch: Dispatch<any> = useDispatch();
     const beers = useSelector((state: any) => state.beersReducer.beers);
     const [page, setPage] = useState(1);
+    const [filteredBeers, setFilteredBeers] = useState(beers);
+    const [searchTerm, setSearchTerm] = useState('');
     const perPage = 10;
 
     useEffect(() => {
         dispatch<any>(fetchBeers(page, perPage));
     }, [dispatch, page]);
+
+    useEffect(() => {
+        const filtered = beers.filter((beer: any) => {
+            return (
+                beer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                beer.description.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        });
+
+        setFilteredBeers(filtered);
+    }, [beers, searchTerm]);
 
     const nextPage = () => {
         setPage((page) => page + 1);
@@ -26,13 +39,17 @@ const DataTable = () => {
         setPage((page) => page - 1);
     };
 
+    const handleSearch = (searchTerm: string) => {
+        setSearchTerm(searchTerm);
+    };
+
     return (
         <>
             <BeerBubbles/>
-            <SearchBeer/>
+            <SearchBeer onSearch={handleSearch}/>
             <BeerTitle>Crazy Beers</BeerTitle>
             <BeerItems>
-                {beers.map((beer: Beer) => (
+                {filteredBeers.slice((page - 1) * perPage, page * perPage).map((beer: Beer) => (
                     <BeerItem key={beer.id}>
                         <BeerName>{beer.name}</BeerName>
                         <BeerImg src={beer.image_url}/>
@@ -47,7 +64,7 @@ const DataTable = () => {
                 <button onClick={prevPage} disabled={page === 1}>
                     Prev
                 </button>
-                <button onClick={nextPage} disabled={!beers || beers.length < perPage}>
+                <button onClick={nextPage} disabled={!beers || filteredBeers.length < perPage}>
                     Next
                 </button>
             </ButtonsBeers>
