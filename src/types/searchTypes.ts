@@ -1,9 +1,11 @@
 export interface SearchState {
     searchTerm: string;
+    searchResults: any[];
 }
 
 export enum SearchActionTypes {
     SET_SEARCH_TERM = "SET_SEARCH_TERM",
+    SEARCH_BEERS_REQUEST = "SEARCH_BEERS_REQUEST",
 }
 
 export interface SetSearchTermAction {
@@ -11,4 +13,8 @@ export interface SetSearchTermAction {
     payload: string;
 }
 
-export type SearchAction = SetSearchTermAction;
+export interface SearchBeersRequestAction {
+    type: SearchActionTypes.SEARCH_BEERS_REQUEST;
+}
+
+export type SearchAction = SetSearchTermAction | SearchBeersRequestAction;
