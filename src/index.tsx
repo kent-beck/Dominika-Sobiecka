@@ -2,6 +2,7 @@ import {createRoot} from 'react-dom/client';
 import {Provider} from 'react-redux';
 import {configureStore} from './store';
 import Root from './views/Root/Root';
+import './index.css';
 
 const store = configureStore();
 
