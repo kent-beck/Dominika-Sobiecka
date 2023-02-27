@@ -1,4 +1,10 @@
-import {ActionTypes, AddToCartAction, CartItem, RemoveFromCartAction, UpdateQuantityAction} from "../actions/cartAction";
+import {
+    ActionTypes,
+    AddToCartAction,
+    CartItem,
+    RemoveFromCartAction,
+    UpdateQuantityAction
+} from "../actions/cartAction";
 
 export interface State {
     cart: CartItem[];
@@ -11,12 +17,12 @@ const initialState: State = {
 const cartReducer = (state: State = initialState, action: AddToCartAction | RemoveFromCartAction | UpdateQuantityAction): State => {
     switch (action.type) {
         case ActionTypes.ADD_TO_CART:
-            const existingItem = state.cart.find((item) => item.product.id === action.payload.product.id);
+            const existingItem = state.cart.find((item) => item.beer.id === action.payload.beer.id);
             if (existingItem) {
                 return {
                     ...state,
                     cart: state.cart.map((item) =>
-                        item.product.id === action.payload.product.id
+                        item.beer.id === action.payload.beer.id
                             ? {...item, quantity: item.quantity + action.payload.quantity}
                             : item
                     ),
@@ -24,19 +30,19 @@ const cartReducer = (state: State = initialState, action: AddToCartAction | Remo
             } else {
                 return {
                     ...state,
-                    cart: [...state.cart, {product: action.payload.product, quantity: action.payload.quantity}],
+                    cart: [...state.cart, {beer: action.payload.beer, quantity: action.payload.quantity}],
                 };
             }
         case ActionTypes.REMOVE_FROM_CART:
             return {
                 ...state,
-                cart: state.cart.filter((item) => item.product.id !== action.payload.id),
+                cart: state.cart.filter((item) => item.beer.id !== action.payload.id),
             };
         case ActionTypes.UPDATE_QUANTITY:
             return {
                 ...state,
                 cart: state.cart.map((item) =>
-                    item.product.id === action.payload.id ? {...item, quantity: action.payload.quantity} : item
+                    item.beer.id === action.payload.id ? {...item, quantity: action.payload.quantity} : item
                 ),
             };
         default:

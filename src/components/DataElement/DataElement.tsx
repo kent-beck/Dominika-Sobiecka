@@ -1,11 +1,12 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {Beer} from "../../types/beersTypes";
 import {useParams} from "react-router-dom";
 import {Link} from 'react-router-dom';
 import {BeerTitle} from '../BeerTitle/BeerTitle.styled';
 import BeerBubbles from "../BeerBubbles/BeerBubbles";
 import {BeerItem, BeerItemColImg, BeerItemColText} from './DataElement.styled';
+import {addToCart} from "../../actions/cartAction";
 
 interface Props {
     beer?: Beer;
@@ -14,7 +15,14 @@ interface Props {
 const DataElement: React.FC<Props> = () => {
     const {beerId} = useParams<{ beerId: string }>();
     const beer = useSelector((state: any) => state.beersReducer.beers.find((beer: Beer) => beer.id === Number(beerId)));
+    const dispatch = useDispatch();
 
+    const handleAddToCart = () => {
+        if (!beer || !beer.id) {
+            return;
+        }
+        dispatch(addToCart(beer));
+    };
 
     if (!beer || !beer.id) {
         return <div>No beer data found</div>;
@@ -37,7 +45,7 @@ const DataElement: React.FC<Props> = () => {
                     <p>ABV: {abv}</p>
                     <p>Prize: ${srm}</p>
 
-                    <Link to="/cart">
+                    <Link to="/cart" onClick={handleAddToCart}>
                         <button>Add to Cart</button>
                     </Link>
                 </BeerItemColText>

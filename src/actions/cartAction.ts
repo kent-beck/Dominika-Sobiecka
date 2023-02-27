@@ -7,7 +7,7 @@ export enum ActionTypes {
 }
 
 export interface CartItem {
-    product: Beer;
+    beer: Beer;
     quantity: number;
 }
 
@@ -32,15 +32,16 @@ export interface UpdateQuantityAction {
 }
 
 export const addToCart = (
-    product: Beer,
-    quantity: number
+    beer: Beer,
+    quantity = 1
 ): AddToCartAction => ({
     type: ActionTypes.ADD_TO_CART,
     payload: {
-        product,
+        beer,
         quantity,
     },
 });
+
 
 export const removeFromCart = (id: number): RemoveFromCartAction => ({
     type: ActionTypes.REMOVE_FROM_CART,
