@@ -12,14 +12,14 @@ import {BeerItems, BeerItem, BeerName, BeerImg, BeerAbv, BeerTagline, ButtonsBee
 const DataTable = () => {
     const dispatch: Dispatch<any> = useDispatch();
     const beers = useSelector((state: any) => state.beersReducer.beers);
-    const [page, setPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [filteredBeers, setFilteredBeers] = useState(beers);
     const [searchTerm, setSearchTerm] = useState('');
     const perPage = 10;
 
     useEffect(() => {
-        dispatch<any>(fetchBeers(page, perPage));
-    }, [dispatch, page, perPage]);
+        dispatch<any>(fetchBeers(currentPage, perPage));
+    }, [dispatch, currentPage, perPage]);
 
     useEffect(() => {
         const filtered = beers.filter((beer: Beer) => {
@@ -30,24 +30,24 @@ const DataTable = () => {
         });
 
         setFilteredBeers(filtered);
+        setCurrentPage(1);
     }, [beers, searchTerm]);
 
     const nextPage = () => {
-        setPage((page) => page + 1);
+        setCurrentPage((currentPage) => currentPage + 1);
     };
 
     const prevPage = () => {
-        setPage((page) => page - 1);
+        setCurrentPage((currentPage) => currentPage - 1);
     };
 
     useEffect(() => {
         setFilteredBeers(beers);
-        setPage(1);
+        setCurrentPage(1);
     }, [beers]);
 
     const handleSearch = (searchTerm: string) => {
         setSearchTerm(searchTerm);
-        setPage(1);
     };
 
     return (
@@ -56,7 +56,7 @@ const DataTable = () => {
             <SearchBeer onSearch={handleSearch}/>
             <BeerTitle>Crazy Beers</BeerTitle>
             <BeerItems>
-                {filteredBeers.slice((page - 1) * perPage, page * perPage).map((beer: Beer) => (
+                {filteredBeers.slice((currentPage - 1) * perPage, currentPage * perPage).map((beer: Beer) => (
                     <Link to={`/dataelement/${beer.id}`} key={beer.id}>
                         <BeerItem>
                             <BeerName>{beer.name}</BeerName>
@@ -70,10 +70,10 @@ const DataTable = () => {
                 ))}
             </BeerItems>
             <ButtonsBeers>
-                <button onClick={prevPage} disabled={page === 1}>
+                <button onClick={prevPage} disabled={currentPage === 1}>
                     Prev
                 </button>
-                <button onClick={nextPage} disabled={!filteredBeers || filteredBeers.length < perPage}>
+                <button onClick={nextPage} disabled={filteredBeers.length < perPage}>
                     Next
                 </button>
             </ButtonsBeers>

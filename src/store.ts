@@ -2,10 +2,14 @@ import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from 'redux-thunk';
 import {beersReducer} from './reducers/beersReducer';
 import searchReducer from "./reducers/searchReducers";
+import beerReducer from "./reducers/beerReducer";
+import cartReducer from "./reducers/cartReducer";
 
 const rootReducer = combineReducers({
     beersReducer,
     searchReducer,
+    beerReducer,
+    cartReducer,
 });
 export type RootState = ReturnType<typeof rootReducer>;
 

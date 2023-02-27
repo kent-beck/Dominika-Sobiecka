@@ -6,13 +6,15 @@ import {useParams} from "react-router-dom";
 import {Beer} from "../../types/beersTypes";
 
 interface Props {
-    cartItems?: Beer;
+    beer?: Beer;
 }
 
 const Cart: React.FC<Props> = () => {
     const {beerId} = useParams<{ beerId: string }>();
     const dispatch = useDispatch();
-    const cartItems = useSelector((state: any) => state.cartReducer.cart.find((beer: Beer) => cartItems.id === Number(beerId)));
+    const cartItems = useSelector((state: any) =>
+        state.cartReducer.cartItems.filter((item: CartItem) => item.beer.id === Number(beerId))
+    );
 
     const handleRemoveFromCart = (id: number) => {
         dispatch(removeFromCart(id));
