@@ -19,4 +19,14 @@ export const BeerItemColImg = styled.div`
 
 export const BeerItemColText = styled.div`
   width: 70%;
+
+  a {
+    z-index: 100;
+    position: relative;
+  }
+
+  button {
+    z-index: 10;
+    cursor: pointer;
+  }
 `;

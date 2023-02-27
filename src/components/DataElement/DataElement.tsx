@@ -2,6 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {Beer} from "../../types/beersTypes";
 import {useParams} from "react-router-dom";
+import {Link} from 'react-router-dom';
 import {BeerTitle} from '../BeerTitle/BeerTitle.styled';
 import BeerBubbles from "../BeerBubbles/BeerBubbles";
 import {BeerItem, BeerItemColImg, BeerItemColText} from './DataElement.styled';
@@ -35,6 +36,10 @@ const DataElement: React.FC<Props> = () => {
                     <p>Description: {description}</p>
                     <p>ABV: {abv}</p>
                     <p>Prize: ${srm}</p>
+
+                    <Link to="/cart">
+                        <button>Add to Cart</button>
+                    </Link>
                 </BeerItemColText>
             </BeerItem>
         </>
