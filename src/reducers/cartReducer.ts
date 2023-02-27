@@ -14,7 +14,7 @@ const initialState: State = {
     cart: []
 };
 
-const cartReducer = (state: State = initialState, action: AddToCartAction | RemoveFromCartAction | UpdateQuantityAction): State => {
+export const cartReducer = (state: State = initialState, action: AddToCartAction | RemoveFromCartAction | UpdateQuantityAction): State => {
     switch (action.type) {
         case ActionTypes.ADD_TO_CART:
             const existingItem = state.cart.find((item) => item.beer.id === action.payload.beer.id);
@@ -49,5 +49,3 @@ const cartReducer = (state: State = initialState, action: AddToCartAction | Remo
             return state;
     }
 };
-
-export default cartReducer;

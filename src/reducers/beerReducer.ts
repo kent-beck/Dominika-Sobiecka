@@ -13,7 +13,7 @@ const initialState: State = {
     error: null,
 };
 
-const beerReducer = (state: State = initialState, action: any): State => {
+export const beerReducer = (state: State = initialState, action: any): State => {
     switch (action.type) {
         case ActionTypes.FETCH_BEER_REQUEST:
             return {
@@ -37,5 +37,3 @@ const beerReducer = (state: State = initialState, action: any): State => {
             return state;
     }
 };
-
-export default beerReducer;

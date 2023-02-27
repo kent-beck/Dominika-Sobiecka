@@ -21,5 +21,3 @@ export const searchReducer = (state = initialState, action: SearchAction): Searc
             return state;
     }
 };
-
-export default searchReducer;

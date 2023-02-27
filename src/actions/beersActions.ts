@@ -22,8 +22,13 @@ export interface FetchBeersFailureAction {
     error: string;
 }
 
-export const fetchBeers = (page: number, perPage: number) => {
-    const url = `https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}`;
+export const fetchBeers = (page: number, perPage: number, searchTerm: string = '') => {
+    let url = `https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}`;
+
+    if (searchTerm.trim()) {
+        url += `&beer_name=${searchTerm.trim()}`;
+    }
+
     return async (dispatch: Dispatch) => {
         dispatch<FetchBeersRequestAction>({type: ActionTypes.FETCH_BEERS_REQUEST});
 

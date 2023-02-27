@@ -31,16 +31,20 @@ export interface UpdateQuantityAction {
     };
 }
 
-export const addToCart = (
-    beer: Beer,
-    quantity = 1
-): AddToCartAction => ({
-    type: ActionTypes.ADD_TO_CART,
-    payload: {
-        beer,
-        quantity,
-    },
-});
+export const addToCart = (beer: Beer, quantity: number): AddToCartAction => {
+    console.log("addToCart", beer, quantity);
+
+    return {
+        type: ActionTypes.ADD_TO_CART,
+        payload: {
+            beer: {
+                ...beer,
+                food_pairing: [],
+            },
+            quantity,
+        },
+    };
+};
 
 
 export const removeFromCart = (id: number): RemoveFromCartAction => ({

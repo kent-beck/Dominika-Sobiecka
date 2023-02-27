@@ -21,8 +21,9 @@ const DataElement: React.FC<Props> = () => {
         if (!beer || !beer.id) {
             return;
         }
-        dispatch(addToCart(beer));
+        dispatch(addToCart(beer, 1));
     };
+
 
     if (!beer || !beer.id) {
         return <div>No beer data found</div>;
