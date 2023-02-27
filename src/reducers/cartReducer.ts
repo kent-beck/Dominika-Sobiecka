@@ -17,6 +17,7 @@ const initialState: State = {
 export const cartReducer = (state: State = initialState, action: AddToCartAction | RemoveFromCartAction | UpdateQuantityAction): State => {
     switch (action.type) {
         case ActionTypes.ADD_TO_CART:
+            console.log('Added beer to cart:', action.payload);
             const existingItem = state.cart.find((item) => item.beer.id === action.payload.beer.id);
             if (existingItem) {
                 return {

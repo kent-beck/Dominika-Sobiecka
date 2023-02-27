@@ -32,8 +32,6 @@ export interface UpdateQuantityAction {
 }
 
 export const addToCart = (beer: Beer, quantity: number): AddToCartAction => {
-    console.log("addToCart", beer, quantity);
-
     return {
         type: ActionTypes.ADD_TO_CART,
         payload: {

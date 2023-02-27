@@ -11,6 +11,7 @@ interface Props {
 const Cart: React.FC<Props> = ({beer}) => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => {
+        console.log('Cart items:', state.cartReducer.cartItems);
         const filteredCartItems = state.cartReducer.cartItems
             ? state.cartReducer.cartItems.filter(
                 (item: CartItem) => item.beer.id === beer?.id

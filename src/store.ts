@@ -4,6 +4,7 @@ import {beersReducer} from './reducers/beersReducer';
 import {searchReducer} from "./reducers/searchReducers";
 import {beerReducer} from "./reducers/beerReducer";
 import {cartReducer} from "./reducers/cartReducer";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
     beersReducer,
