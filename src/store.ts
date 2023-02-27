@@ -7,6 +7,7 @@ const rootReducer = combineReducers({
     beersReducer,
     searchReducer,
 });
+export type RootState = ReturnType<typeof rootReducer>;
 
 export const configureStore = () => {
     const store = createStore(rootReducer, applyMiddleware(thunk));
