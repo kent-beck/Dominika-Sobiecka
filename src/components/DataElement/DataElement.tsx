@@ -1,15 +1,24 @@
 import React from "react";
 import {Beer} from "../../types/beersTypes";
+import {useParams} from 'react-router-dom';
 
 interface Props {
-    beer: Beer;
+    beer?: Beer;
 }
 
 const DataElement: React.FC<Props> = ({beer}) => {
-    const {id, name, tagline, image_url, description, abv} = beer;
+    const {beerId} = useParams<{ beerId: string }>();
+    console.log('beerId:', beerId);
+    console.log('beer:', beer);
+
+    if (!beer || !beer.id) {
+        return <div>No beer data found</div>;
+    }
+
+    const {name, tagline, image_url, description, abv} = beer;
 
     return (
-        <div>
+        <div key={beer.id}>
             <h2>{name}</h2>
             <p>Tagline: {tagline}</p>
             <p>Description: {description}</p>
@@ -18,5 +27,6 @@ const DataElement: React.FC<Props> = ({beer}) => {
         </div>
     );
 };
+
 
 export default DataElement;

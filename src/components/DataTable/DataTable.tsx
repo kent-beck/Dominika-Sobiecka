@@ -51,7 +51,7 @@ const DataTable = () => {
             <BeerTitle>Crazy Beers</BeerTitle>
             <BeerItems>
                 {filteredBeers.slice((page - 1) * perPage, page * perPage).map((beer: Beer) => (
-                    <Link to="/dataelement">
+                    <Link to={`/dataelement/${beer.id}`}>
                         <BeerItem key={beer.id}>
                             <BeerName>{beer.name}</BeerName>
                             <BeerImg src={beer.image_url}/>

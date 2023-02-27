@@ -17,6 +17,7 @@ export const BeerItem = styled.div`
   padding: 3rem;
   border-radius: 15px;
   width: 250px;
+  height: 500px;
   cursor: pointer;
   z-index: 10;
 `;

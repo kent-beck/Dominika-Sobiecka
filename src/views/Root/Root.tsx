@@ -10,7 +10,7 @@ function Root() {
             <Routes>
                 <Route path="/" element={<Welcome/>}/>
                 <Route path="/datatable" element={<DataTable/>}/>
-                <Route path="/dataelement" element={<DataElement/>}/>
+                <Route path='/dataelement/:beerId' element={<DataElement/>}/>
             </Routes>
         </Router>
     );
