@@ -2,13 +2,17 @@ import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {CartItem} from "../../types/cartTypes";
 import {removeFromCart, updateQuantity} from "../../actions/cartAction";
+import {useParams} from "react-router-dom";
+import {Beer} from "../../types/beersTypes";
 
 interface Props {
+    cartItems?: Beer;
 }
 
 const Cart: React.FC<Props> = () => {
+    const {beerId} = useParams<{ beerId: string }>();
     const dispatch = useDispatch();
-    const cartItems = useSelector((state: any) => state.cartReducer.cart);
+    const cartItems = useSelector((state: any) => state.cartReducer.cart.find((beer: Beer) => cartItems.id === Number(beerId)));
 
     const handleRemoveFromCart = (id: number) => {
         dispatch(removeFromCart(id));

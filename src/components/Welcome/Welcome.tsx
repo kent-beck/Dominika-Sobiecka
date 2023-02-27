@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {Wrapper, Title, AgeVerification, StyledModal} from './Welcome.styled';
-import Beer from "../Beer/Beer";
+import Beer from "../UI/Beer/Beer";
 import DataTable from '../DataTable/DataTable';
 import {Link} from 'react-router-dom';
 import Modal from 'react-modal';

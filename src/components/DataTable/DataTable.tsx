@@ -3,10 +3,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Dispatch} from 'redux';
 import {fetchBeers} from '../../actions/beersActions';
 import {Beer} from '../../types/beersTypes';
-import BeerBubbles from '../BeerBubbles/BeerBubbles';
-import SearchBeer from '../SearchBeer/SearchBeer';
+import BeerBubbles from '../UI/BeerBubbles/BeerBubbles';
+import SearchBeer from '../UI/SearchBeer/SearchBeer';
 import {Link} from 'react-router-dom';
-import {BeerTitle} from '../BeerTitle/BeerTitle.styled';
+import {BeerTitle} from '../UI/BeerTitle/BeerTitle.styled';
 import {BeerItems, BeerItem, BeerName, BeerImg, BeerAbv, BeerTagline, ButtonsBeers} from './DataTable.styled';
 
 const DataTable = () => {

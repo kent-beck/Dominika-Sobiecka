@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {searchBeersRequest} from "../../actions/searchActions";
-import {SetSearchTermAction, SearchActionTypes} from "../../types/searchTypes";
+import {searchBeersRequest} from "../../../actions/searchActions";
+import {SetSearchTermAction, SearchActionTypes} from "../../../types/searchTypes";
 import {Search} from "./SearchBeer.styled";
 
 interface Props {
