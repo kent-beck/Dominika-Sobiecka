@@ -5,6 +5,7 @@ import {fetchBeers} from '../../actions/beersActions';
 import {Beer} from '../../types/beersTypes';
 import BeerBubbles from '../BeerBubbles/BeerBubbles';
 import SearchBeer from '../SearchBeer/SearchBeer';
+import {Link} from 'react-router-dom';
 import {BeerTitle} from '../BeerTitle/BeerTitle.styled';
 import {BeerItems, BeerItem, BeerName, BeerImg, BeerAbv, BeerTagline, ButtonsBeers} from './DataTable.styled';
 
@@ -50,14 +51,16 @@ const DataTable = () => {
             <BeerTitle>Crazy Beers</BeerTitle>
             <BeerItems>
                 {filteredBeers.slice((page - 1) * perPage, page * perPage).map((beer: Beer) => (
-                    <BeerItem key={beer.id}>
-                        <BeerName>{beer.name}</BeerName>
-                        <BeerImg src={beer.image_url}/>
-                        <BeerAbv>
-                            {beer.abv}% <span>abv</span>
-                        </BeerAbv>
-                        <BeerTagline>{beer.tagline}</BeerTagline>
-                    </BeerItem>
+                    <Link to="/dataelement">
+                        <BeerItem key={beer.id}>
+                            <BeerName>{beer.name}</BeerName>
+                            <BeerImg src={beer.image_url}/>
+                            <BeerAbv>
+                                {beer.abv}% <span>abv</span>
+                            </BeerAbv>
+                            <BeerTagline>{beer.tagline}</BeerTagline>
+                        </BeerItem>
+                    </Link>
                 ))}
             </BeerItems>
             <ButtonsBeers>
