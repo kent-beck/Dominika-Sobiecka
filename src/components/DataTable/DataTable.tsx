@@ -19,10 +19,10 @@ const DataTable = () => {
 
     useEffect(() => {
         dispatch<any>(fetchBeers(page, perPage));
-    }, [dispatch, page]);
+    }, [dispatch, page, perPage]);
 
     useEffect(() => {
-        const filtered = beers.filter((beer: any) => {
+        const filtered = beers.filter((beer: Beer) => {
             return (
                 beer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 beer.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -40,8 +40,14 @@ const DataTable = () => {
         setPage((page) => page - 1);
     };
 
+    useEffect(() => {
+        setFilteredBeers(beers);
+        setPage(1);
+    }, [beers]);
+
     const handleSearch = (searchTerm: string) => {
         setSearchTerm(searchTerm);
+        setPage(1);
     };
 
     return (
@@ -51,8 +57,8 @@ const DataTable = () => {
             <BeerTitle>Crazy Beers</BeerTitle>
             <BeerItems>
                 {filteredBeers.slice((page - 1) * perPage, page * perPage).map((beer: Beer) => (
-                    <Link to={`/dataelement/${beer.id}`}>
-                        <BeerItem key={beer.id}>
+                    <Link to={`/dataelement/${beer.id}`} key={beer.id}>
+                        <BeerItem>
                             <BeerName>{beer.name}</BeerName>
                             <BeerImg src={beer.image_url}/>
                             <BeerAbv>
@@ -67,7 +73,7 @@ const DataTable = () => {
                 <button onClick={prevPage} disabled={page === 1}>
                     Prev
                 </button>
-                <button onClick={nextPage} disabled={!beers || filteredBeers.length < perPage}>
+                <button onClick={nextPage} disabled={!filteredBeers || filteredBeers.length < perPage}>
                     Next
                 </button>
             </ButtonsBeers>
