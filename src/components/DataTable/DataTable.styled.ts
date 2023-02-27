@@ -5,6 +5,10 @@ export const BeerItems = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+
+  a {
+    z-index: 10;
+  }
 `;
 
 export const BeerItem = styled.div`
