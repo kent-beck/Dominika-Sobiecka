@@ -6,7 +6,7 @@ import {Beer} from '../../types/beersTypes';
 import BeerBubbles from '../UI/BeerBubbles/BeerBubbles';
 import SearchBeer from '../UI/SearchBeer/SearchBeer';
 import {Link} from 'react-router-dom';
-import {BeerTitle} from '../UI/BeerTitle/BeerTitle.styled';
+import BeerTitle from '../UI/BeerTitle/BeerTitle';
 import {BeerItems, BeerItem, BeerName, BeerImg, BeerAbv, BeerTagline, ButtonsBeers} from './DataTable.styled';
 
 const DataTable: React.FC = () => {
@@ -36,7 +36,7 @@ const DataTable: React.FC = () => {
         <>
             <BeerBubbles/>
             <SearchBeer onSearch={handleSearch}/>
-            <BeerTitle>Crazy Beers</BeerTitle>
+            <BeerTitle/>
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
             {!loading && !error && (

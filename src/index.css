@@ -17,6 +17,11 @@ code {
     monospace;
 }
 
+a {
+    text-decoration: none;
+    position: relative;
+}
+
 img {
     max-width: 100%;
 }

@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {Beer} from "../../types/beersTypes";
 import {useParams} from "react-router-dom";
 import {Link} from "react-router-dom";
-import {BeerTitle} from "../UI/BeerTitle/BeerTitle.styled";
+import BeerTitle from '../UI/BeerTitle/BeerTitle';
 import BeerBubbles from "../UI/BeerBubbles/BeerBubbles";
 import {BeerItem, BeerItemColImg, BeerItemColText, ButtonsToCart} from "./DataElement.styled";
 import CartButton from "../CartButton/CartButton";
@@ -27,7 +27,7 @@ const DataElement: React.FC<Props> = () => {
     return (
         <>
             <BeerBubbles/>
-            <BeerTitle>Crazy Beers</BeerTitle>
+            <BeerTitle/>
             <BeerItem key={beer.id}>
                 <BeerItemColImg>
                     <img src={image_url} alt={name}/>

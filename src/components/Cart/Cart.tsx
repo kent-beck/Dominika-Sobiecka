@@ -4,7 +4,7 @@ import {CartItem} from "../../types/cartTypes";
 import {removeFromCart, updateQuantity} from "../../actions/cartAction";
 import {Beer} from "../../types/beersTypes";
 import BeerBubbles from "../UI/BeerBubbles/BeerBubbles";
-import {BeerTitle} from "../UI/BeerTitle/BeerTitle.styled";
+import BeerTitle from '../UI/BeerTitle/BeerTitle';
 import {ShopTable, Table, Summary, WrapperCart} from "./Cart.styled";
 
 interface Props {
@@ -33,7 +33,7 @@ const Cart: React.FC<Props> = ({beer}) => {
     return (
         <div>
             <BeerBubbles/>
-            <BeerTitle>Crazy Beers</BeerTitle>
+            <BeerTitle/>
             <WrapperCart>
                 {cartItems && cartItems.length > 0 ? (
                     cartItems
