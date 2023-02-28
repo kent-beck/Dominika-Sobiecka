@@ -9,6 +9,7 @@ The application will allow you to:
 The application uses TypeScript and Redux. 
 For styles, I use styled-componnets
 
+The application currently contains one test file for Data-Table
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 In the project directory, you can run:
