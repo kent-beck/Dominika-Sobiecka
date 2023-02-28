@@ -8,6 +8,27 @@ export const ShopTable = styled.div`
   @media (min-width: 730px) {
     max-width: 400px;
   }
+
+  button {
+    background-color: rgb(103, 161, 248);
+    border: none;
+    padding: 12px 16px;
+    color: white;
+    box-shadow: 1px 1px 5px #929090;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+    z-index: 10;
+    margin-right: 1rem;
+
+    :hover {
+      background-color: rgb(84, 218, 149);
+    }
+  }
+
+  input {
+    height: 27px;
+  }
 `;
 
 export const Table = styled.div`
