@@ -3,6 +3,9 @@ import {useSelector, useDispatch} from "react-redux";
 import {CartItem} from "../../types/cartTypes";
 import {removeFromCart, updateQuantity} from "../../actions/cartAction";
 import {Beer} from "../../types/beersTypes";
+import BeerBubbles from "../UI/BeerBubbles/BeerBubbles";
+import {BeerTitle} from "../UI/BeerTitle/BeerTitle.styled";
+import {ShopTable, Table, Summary, WrapperCart} from "./Cart.styled";
 
 interface Props {
     beer?: Beer;
@@ -11,13 +14,8 @@ interface Props {
 const Cart: React.FC<Props> = ({beer}) => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => {
-        console.log('Cart items:', state.cartReducer.cartItems);
-        const filteredCartItems = state.cartReducer.cartItems
-            ? state.cartReducer.cartItems.filter(
-                (item: CartItem) => item.beer.id === beer?.id
-            )
-            : [];
-        return filteredCartItems;
+        console.log('Cart items:', state.cartReducer.items);
+        return state.cartReducer.items ?? [];
     });
 
     const handleRemoveFromCart = (id: number) => {
@@ -34,31 +32,85 @@ const Cart: React.FC<Props> = ({beer}) => {
 
     return (
         <div>
-            <h2>Cart</h2>
-            {cartItems && cartItems.length > 0 ? (
-                cartItems.map((item: CartItem) => (
-                    <div key={item.id}>
-                        <h3>{item.beer.name}</h3>
-                        <p>Quantity: {item.quantity}</p>
-                        <p>Price: ${item.beer.srm * item.quantity}</p>
-                        <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
-                        <input
-                            type="number"
-                            value={item.quantity}
-                            min="1"
-                            onChange={(e) =>
-                                handleUpdateQuantity(item.id, parseInt(e.target.value))
-                            }
-                        />
-                    </div>
-                ))
-            ) : (
-                <div>No items in cart</div>
-            )}
+            <BeerBubbles/>
+            <BeerTitle>Crazy Beers</BeerTitle>
+            <WrapperCart>
+                {cartItems && cartItems.length > 0 ? (
+                    cartItems
+                        .filter((item: CartItem) => !beer || item.beer.id === beer.id)
+                        .map((item: CartItem) => (
+                            <ShopTable key={item.id}>
+                                {item.beer && (
+                                    <Table>
+                                        <thead>
+                                        <tr>
+                                            <th>
 
-            <p>Total Price: ${totalPrice}</p>
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Quantity
+                                            </th>
+                                            <th>
+                                                Price
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <img src={item.beer.image_url} alt={item.beer.name}/>
+                                            </td>
+                                            <td>
+                                                {item.beer.name}
+                                            </td>
+                                            <td>
+                                                {item.quantity}
+                                            </td>
+                                            <td>
+                                                ${item.beer.srm * item.quantity}
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                        <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
+                                        <input
+                                            type="number"
+                                            value={item.quantity}
+                                            min="1"
+                                            onChange={(e) =>
+                                                handleUpdateQuantity(item.id, parseInt(e.target.value))
+                                            }
+                                        />
+                                    </Table>
+                                )}
+                            </ShopTable>
+                        ))
+                ) : (
+                    <div>No items in cart</div>
+                )}
+                <Summary>
+                    <h3>Cart Summary</h3>
+                    <p>Total Price: ${totalPrice}</p>
+                </Summary>
+
+            </WrapperCart>
+
         </div>
     );
 };
 
 export default Cart;
+
+
+
+
+
+
+
+
+
+
+

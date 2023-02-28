@@ -1,52 +1,52 @@
-import {Beer} from "../types/beerTypes";
-
-export enum ActionTypes {
-    ADD_TO_CART = "ADD_TO_CART",
-    REMOVE_FROM_CART = "REMOVE_FROM_CART",
-    UPDATE_QUANTITY = "UPDATE_QUANTITY",
-}
-
-export interface CartItem {
-    beer: Beer;
-    quantity: number;
-}
+import {Beer} from "../types/beersTypes";
+import {CartItem, CartActionTypes} from "../types/cartTypes";
 
 export interface AddToCartAction {
-    type: ActionTypes.ADD_TO_CART;
-    payload: CartItem;
+    type: CartActionTypes.ADD_ITEM;
+    payload: {
+        item: CartItem;
+    };
 }
 
 export interface RemoveFromCartAction {
-    type: ActionTypes.REMOVE_FROM_CART;
+    type: CartActionTypes.REMOVE_ITEM;
     payload: {
         id: number;
     };
 }
 
 export interface UpdateQuantityAction {
-    type: ActionTypes.UPDATE_QUANTITY;
+    type: CartActionTypes.UPDATE_QUANTITY;
     payload: {
         id: number;
         quantity: number;
     };
 }
 
-export const addToCart = (beer: Beer, quantity: number): AddToCartAction => {
+export interface ClearCartAction {
+    type: CartActionTypes.CLEAR_CART;
+}
+
+export const addToCart = (beer: Beer, quantity: number, cart: CartItem[]): AddToCartAction => {
+    const newItem: CartItem = {
+        id: Date.now(),
+        beer: {
+            ...beer,
+        },
+        quantity,
+    };
+
     return {
-        type: ActionTypes.ADD_TO_CART,
+        type: CartActionTypes.ADD_ITEM,
         payload: {
-            beer: {
-                ...beer,
-                food_pairing: [],
-            },
-            quantity,
+            item: newItem,
         },
     };
 };
 
 
 export const removeFromCart = (id: number): RemoveFromCartAction => ({
-    type: ActionTypes.REMOVE_FROM_CART,
+    type: CartActionTypes.REMOVE_ITEM,
     payload: {
         id,
     },
@@ -56,9 +56,13 @@ export const updateQuantity = (
     id: number,
     quantity: number
 ): UpdateQuantityAction => ({
-    type: ActionTypes.UPDATE_QUANTITY,
+    type: CartActionTypes.UPDATE_QUANTITY,
     payload: {
         id,
         quantity,
     },
+});
+
+export const clearCart = (): ClearCartAction => ({
+    type: CartActionTypes.CLEAR_CART,
 });

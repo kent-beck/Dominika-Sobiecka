@@ -1,50 +1,32 @@
-import {
-    ActionTypes,
-    AddToCartAction,
-    CartItem,
-    RemoveFromCartAction,
-    UpdateQuantityAction
-} from "../actions/cartAction";
+import {CartActionTypes, CartState} from '../types/cartTypes';
 
-export interface State {
-    cart: CartItem[];
-}
-
-const initialState: State = {
-    cart: []
+const initialState: CartState = {
+    items: [],
 };
 
-export const cartReducer = (state: State = initialState, action: AddToCartAction | RemoveFromCartAction | UpdateQuantityAction): State => {
+export const cartReducer = (state = initialState, action: any): CartState => {
     switch (action.type) {
-        case ActionTypes.ADD_TO_CART:
-            console.log('Added beer to cart:', action.payload);
-            const existingItem = state.cart.find((item) => item.beer.id === action.payload.beer.id);
-            if (existingItem) {
-                return {
-                    ...state,
-                    cart: state.cart.map((item) =>
-                        item.beer.id === action.payload.beer.id
-                            ? {...item, quantity: item.quantity + action.payload.quantity}
-                            : item
-                    ),
-                };
-            } else {
-                return {
-                    ...state,
-                    cart: [...state.cart, {beer: action.payload.beer, quantity: action.payload.quantity}],
-                };
-            }
-        case ActionTypes.REMOVE_FROM_CART:
+        case CartActionTypes.ADD_ITEM:
             return {
                 ...state,
-                cart: state.cart.filter((item) => item.beer.id !== action.payload.id),
+                items: [...state.items, action.payload.item],
             };
-        case ActionTypes.UPDATE_QUANTITY:
+        case CartActionTypes.REMOVE_ITEM:
             return {
                 ...state,
-                cart: state.cart.map((item) =>
-                    item.beer.id === action.payload.id ? {...item, quantity: action.payload.quantity} : item
+                items: state.items.filter((item) => item.id !== action.payload.id),
+            };
+        case CartActionTypes.UPDATE_QUANTITY:
+            return {
+                ...state,
+                items: state.items.map((item) =>
+                    item.id === action.payload.id ? {...item, quantity: action.payload.quantity} : item
                 ),
+            };
+        case CartActionTypes.CLEAR_CART:
+            return {
+                ...state,
+                items: [],
             };
         default:
             return state;

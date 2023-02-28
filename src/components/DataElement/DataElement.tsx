@@ -1,12 +1,12 @@
 import React from "react";
-import {useSelector, useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 import {Beer} from "../../types/beersTypes";
 import {useParams} from "react-router-dom";
-import {Link} from 'react-router-dom';
-import {BeerTitle} from '../UI/BeerTitle/BeerTitle.styled';
+import {Link} from "react-router-dom";
+import {BeerTitle} from "../UI/BeerTitle/BeerTitle.styled";
 import BeerBubbles from "../UI/BeerBubbles/BeerBubbles";
-import {BeerItem, BeerItemColImg, BeerItemColText} from './DataElement.styled';
-import {addToCart} from "../../actions/cartAction";
+import {BeerItem, BeerItemColImg, BeerItemColText, ButtonsToCart} from "./DataElement.styled";
+import CartButton from "../CartButton/CartButton";
 
 interface Props {
     beer?: Beer;
@@ -14,16 +14,9 @@ interface Props {
 
 const DataElement: React.FC<Props> = () => {
     const {beerId} = useParams<{ beerId: string }>();
-    const beer = useSelector((state: any) => state.beersReducer.beers.find((beer: Beer) => beer.id === Number(beerId)));
-    const dispatch = useDispatch();
-
-    const handleAddToCart = () => {
-        if (!beer || !beer.id) {
-            return;
-        }
-        dispatch(addToCart(beer, 1));
-    };
-
+    const beer = useSelector((state: any) =>
+        state.beersReducer.beers.find((beer: Beer) => beer.id === Number(beerId))
+    );
 
     if (!beer || !beer.id) {
         return <div>No beer data found</div>;
@@ -46,9 +39,15 @@ const DataElement: React.FC<Props> = () => {
                     <p>ABV: {abv}</p>
                     <p>Prize: ${srm}</p>
 
-                    <Link to={`/cart`} key={beer.id} onClick={handleAddToCart}>
-                        <button>Add to Cart</button>
-                    </Link>
+                    <ButtonsToCart>
+                        <CartButton beer={beer}/>
+                        <button>
+                            <Link to={`/cart`} key={beer.id}>
+                                Check the basket
+                            </Link>
+                        </button>
+
+                    </ButtonsToCart>
                 </BeerItemColText>
             </BeerItem>
         </>
